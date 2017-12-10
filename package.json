@@ -1,5 +1,9 @@
 {
     "dependencies": {
-        "jquery": "^3.2.1"
+        "bootstrap": "^4.0.0-beta.2",
+        "bootstrap-markdown": "^2.10.0",
+        "bootstrap-maxlength": "^1.6.0",
+        "jquery": "^3.2.1",
+        "popper.js": "1.12.3"
     }
 }

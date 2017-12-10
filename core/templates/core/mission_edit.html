@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Edit Mission {{ mission.id }} - FART{% endblock %}
+
+{% block pre-content %}
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'core:index' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'core:missions' %}">Missions</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'core:tests' mission.id %}">{{ mission.mission_title }}</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block content %}
+<div class="container-flex">
+    <div class="row">
+        <h1 class="display-4">
+            Edit {{mission.mission_title}}
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xl">
+            <form action="{% url 'core:tests' mission.id %}" method="post">
+                <div class="form-group">
+                    <label for="mission_title">Misson Title</label>
+                    <input type="text" class="form-control" name="mission_title" id="mission_title" value="{{ mission.mission_title }}" maxlength="100" placeholder="Unnamed Mission">
+                    <small id="missionTitleHelp" class="form-text text-muted">Give your Mission a bomb-ass name.</small>
+                </div>
+                <div class="form-group">
+                    <label for="mission_title">Misson Description</label>
+                    <input type="text" class="form-control" name="mission_desc" id="mission_desc" value="{{ mission.mission_description }}" maxlength="200" placeholder="A new Mission">
+                    <small id="missionTitleHelp" class="form-text text-muted">A short description. This will be a subtitle in the report.</small>
+                </div>
+                <div class="form-group">
+                    <label for="mission_title">Misson Body</label>
+                    <textarea class="form-control" name="mission_desc" data-provide="markdown" data-iconlibrary="fa" data-resize="vertical" data-fullscreen="{'enable': false}" rows="10" id="mission_desc" value="{{ mission.mission_description }}" maxlength="200" placeholder="Mission body">{{ mission.mission_body }}</textarea>
+                    <small id="missionTitleHelp" class="form-text text-muted">The mission body. This will be the section content in the report (before Test Cases).</small>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

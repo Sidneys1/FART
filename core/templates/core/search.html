@@ -28,7 +28,7 @@
                 {% for mission in missions %}
                     <tr>
                         <th scope="row">{{ mission.id }}</th>
-                        <td><a href="{% url 'mission_detail' mission.id %}">{{ mission.mission_title }}</a></td>
+                        <td><a href="{% url 'core:mission_detail' mission.id %}">{{ mission.mission_title }}</a></td>
                         <td><div class="font-italic">{{ mission.mission_description }}</div></td>
                         <td>{{ mission.create_date }}</td>
                     </tr>
@@ -79,7 +79,7 @@
                 {% for test in tests %}
                     <tr>
                         <th scope="row">{{ test.id }}</th>
-                        <td><a href="{% url 'test_detail' test.mission.id test.id %}">{{ test.test_case_title }}</a></td>
+                        <td><a href="{% url 'core:test_detail' test.mission.id test.id %}">{{ test.test_case_title }}</a></td>
                         <td><div class="font-italic">{{ test.test_case_description }}</div></td>
                         <td>{{ test.create_date }}</td>
                     </tr>

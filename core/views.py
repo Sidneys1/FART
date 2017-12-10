@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Mission, TestCase
 from .search import get_query
+from django.db.models import Q
 
 ITEMS_PER_PAGE = 4
 
@@ -75,11 +76,25 @@ def missions(request):
     }
     return render(request, 'core/missions.html', context)
 
-def mission(request, mission_id):
-    return HttpResponse("You are looking at mission %s" % mission_id)
+def mission_edit(request, mission_id):
+    mission_obj = get_object_or_404(Mission, pk=mission_id)
+    return render(request, 'core/mission_edit.html', {'mission': mission_obj})
 
 def tests(request, mission_id):
-    return HttpResponse("You are looking at mission %s's tests" % mission_id)
+    mission_obj = get_object_or_404(Mission, pk=mission_id)
+    test_objs = TestCase.objects.filter(Q(**{'mission': mission_id})).order_by('create_date').all()
+
+    paginator = Paginator(test_objs, ITEMS_PER_PAGE)
+
+    page = request.GET.get('page')
+    try:
+        ret = paginator.page(page)
+    except PageNotAnInteger:
+        ret = paginator.page(1)
+    except EmptyPage:
+        ret = paginator.page(paginator.num_pages)
+
+    return render(request, 'core/tests.html', {'mission': mission_obj, 'tests': ret})
 
 def test(request, mission_id, test_id):
     return HttpResponse("You are looking at test %s in mission %s"  % (test_id, mission_id))

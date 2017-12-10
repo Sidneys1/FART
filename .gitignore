@@ -2,3 +2,4 @@
 /core/static/core/**
 **/yarn.lock
 **/yarn-error.log
+venv/**
