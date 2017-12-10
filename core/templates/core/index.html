@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %} {% block title %}Home - FART{% endblock %} {% block content %}
+<div class="jumbotron">
+    <h1 class="display-3">FART</h1>
+    <p class="lead">Fucking Awesome Reporting Toolkit</p>
+    <div class="card">
+        <div class="card-body">
+            <blockquote class="blockquote">
+                <p class="mb-0">Remember kids, the only difference between Science and screwing around is writing it down.</p>
+                <footer class="blockquote-footer">Adam Savage, <cite title="MythBusters">MythBusters</cite></footer>
+            </blockquote>
+        </div>
+    </div>
+    <br />
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{% url 'missions' %}" role="button">Take me to my missions.</a>
+    </p>
+</div>
+{% endblock %}
