@@ -11,6 +11,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'core/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/base.css' %}">
 
     <script defer src="{% static 'core/font-awesome/js/fontawesome-all.min.js' %}"></script>
 </head>
@@ -23,7 +24,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Might not need this? -->
+        <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'core:index' %}">Home
@@ -38,7 +40,7 @@
                 <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search" value="{{ searchterm }}">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
             </form>
-        </div>
+        </div> -->
     </nav>
 
     {% block pre-content %}{% endblock %}

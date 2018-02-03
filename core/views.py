@@ -1,15 +1,20 @@
+import random
+
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Mission, TestCase
+from .models import Mission, TestCase, Quote
 from .search import get_query
 from django.db.models import Q
 
 ITEMS_PER_PAGE = 4
 
 def index(request):
-    return render(request, 'core/index.html')
+    last = Quote.objects.count() - 1
+    index = random.randint(0, last)
+    quote = Quote.objects.all()[index]
+    return render(request, 'core/index.html', {'quote': quote})
 
 def search(request):
     GET_params_wmp = request.GET.copy()
