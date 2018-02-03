@@ -12,3 +12,7 @@ class TestCase(models.Model):
     test_case_description = models.CharField(max_length=200)
     create_date = models.DateTimeField()
     
+class Quote(models.Model):
+    quote = models.CharField(max_length=250)
+    author = models.CharField(max_length=50)
+    cite = models.CharField(max_length=50)
